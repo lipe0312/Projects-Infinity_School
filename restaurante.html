@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avalie Nosso Restaurante</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 20px;
+            width: 60%;
+        }
+
+        .box {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 45%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-top: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        label {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #precoGorjeta {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Avalie Nosso Restaurante</h1>
+    <div class="container">
+        <div class="box">
+            <h2>Calcule a Gorjeta</h2>
+            <form action="javascript:void(0);"> 
+                <label for="gorjeta">
+                    <input type="number" name="valor da conta" id="gorjeta" placeholder="Insira o valor total da conta.">
+                </label>
+                <button id="btnGorjeta" type="button" onclick="calcularGorjeta()">Calcular gorjeta sugerida</button>
+                <p id='precoGorjeta'></p>
+            </form>
+        </div>
+        <div class="box">
+            <h2>Envie Sua Avaliação</h2>
+            <form action="javascript:void(0);"> 
+                <label for="bom">
+                    <input type="radio" name="qualidade" id="bom" value="bom">
+                    Bom
+                </label><br>
+                <label for="Regular">
+                    <input type="radio" name="qualidade" id="Regular" value="Regular">
+                    Regular
+                </label><br>
+                <label for="Ruim">
+                    <input type="radio" name="qualidade" id="Ruim" value="Ruim">
+                    Ruim
+                </label><br>
+
+                <button type="submit">Enviar Avaliação</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const calcularGorjeta = () => {
+            let valorConta = document.getElementById('gorjeta').value;
+            
+            valorConta = parseFloat(valorConta);
+            
+            const valorGorjeta = valorConta * 0.1;
+
+            if (valorConta > 0) {
+                document.getElementById('precoGorjeta').innerText = "Gorjeta sugerida: R$ " + valorGorjeta.toFixed(2);
+            } else {
+                document.getElementById('precoGorjeta').innerText = "Ops, parece que o valor da conta é inválido.";
+            }
+        }
+    </script>
+</body>
+</html>
