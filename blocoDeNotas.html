@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicativo de Anotações</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #noteInput {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        #addNoteButton {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #addNoteButton:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        li {
+            background-color: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        li button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #ff4444;
+        }
+
+        li button:hover {
+            color: #ff0000;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Aplicativo de Anotações</h1>
+
+    <input type="text" id="noteInput" placeholder="Digite sua nota aqui">
+    <button id="addNoteButton">Adicionar Nota</button>
+
+    <ul id="noteList">
+    </ul>
+    
+    <script>
+        var btn = document.querySelector('#addNoteButton')
+        var input = document.querySelector('#noteInput')
+        
+        btn.addEventListener('click', () => {
+            var input =  document.getElementById('noteInput')
+            var notaEscrita = input.value.trim()
+
+            if (notaEscrita == '') {
+                alert('Nota inválida');
+                return;
+            }
+            
+            var ul = document.getElementById('noteList')
+            var li = document.createElement('li')
+            li.innerHTML = `${notaEscrita} <button onclick="removerNota(this)"><i class="fas fa-trash-alt"></i></button>`
+            ul.appendChild(li)
+            input.value = ''
+        })
+
+        function removerNota(e) {
+            const li = e.parentElement
+            li.remove()
+        }
+    </script>
+</body>
+</html>
