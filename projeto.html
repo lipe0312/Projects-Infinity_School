@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicativo de Lista de Tarefas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #taskInput {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        #addTaskButton {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #addTaskButton:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        li {
+            background-color: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        li button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #ff4444;
+        }
+
+        li button:hover {
+            color: #ff0000;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+        
+        .task-item {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .task-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Tarefas</h1>
+
+    <input type="text" id="taskInput" placeholder="Digite sua tarefa aqui">
+    <button id="addTaskButton">Adicionar Tarefa</button>
+
+    <ul id="taskList">
+    </ul>
+    
+    <script>
+        var btn = document.querySelector('#addTaskButton')
+        var input = document.querySelector('#taskInput')
+        
+        btn.addEventListener('click', () => {
+            var tarefaEscrita = input.value.trim()
+
+            if (tarefaEscrita === '') {
+                alert('Tarefa inválida');
+                return;
+            }
+            
+            var ul = document.getElementById('taskList')
+            var li = document.createElement('li')
+            li.className = 'task-item';
+            li.innerHTML = `
+                <input type="checkbox" onclick="conferirTarefa(this)">
+                <span>${tarefaEscrita}</span>
+                <button onclick="removerTarefa(this)"><i class="fas fa-trash-alt"></i></button>
+            `
+            ul.appendChild(li)
+            input.value = ''
+        })
+
+        function removerTarefa(e) {
+            const li = e.parentElement
+            li.remove()
+        }
+
+        function conferirTarefa(checkbox) {
+            const li = checkbox.parentElement
+            if (checkbox.checked) {
+                li.classList.add('completed')
+            } else {
+                li.classList.remove('completed')
+            }
+        }
+    </script>
+</body>
+</html>
