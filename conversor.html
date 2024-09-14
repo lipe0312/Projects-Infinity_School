@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de medidas</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+div {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+input[type="number"],
+input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+p {
+    margin: 10px 0;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+@media (max-width: 500px) {
+    div {
+        width: 90%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+    </style>
+</head>
+<body >
+    <header>
+        <h1 >
+            CONVERSOR DE MEDIDAS
+        </h1>
+    </header>
+    <div>
+
+        <h2>DIGITE A MEDIDA EM METROS:</h2><br>
+        <input type="number" name="" id="inputMetros"><br>
+        <button id="btnConverter" onclick="converter()">CONVERTER</button>
+
+        <p id="Jardas">RESULTADO EM JARDAS:</p>
+        <input type="text" name="" id="inputJardas" readonly>
+        <p id="Pés">RESULTADO EM PÉS:</p>
+        <input type="text" name="" id="inputPés" readonly>
+        <p id="Polegadas">RESULTADO EM POLEGADAS:</p>
+        <input type="text" name="" id="inputPolegadas" readonly>
+        <p id="Milhas">RESULTADO EM MILHAS:</p>
+        <input type="text" name="" id="inputMilhas" readonly><br>
+
+
+    </div>
+
+
+
+    <script>
+        function converter(){
+        var metros = parseFloat(document.getElementById('inputMetros').value);
+            
+        if (isNaN(metros) || metros <= 0) {
+            alert("Por favor, insira um valor válido em metros.");
+            return;
+        }
+        document.getElementById('Jardas').innerText = `${metros} METROS EM JARDAS: `;
+        document.getElementById('Pés').innerText = `${metros} METROS EM PÉS: `;
+        document.getElementById('Polegadas').innerText = `${metros} METROS EM POLEGADAS: `;
+        document.getElementById('Milhas').innerText = `${metros} METROS EM MILHAS: `;
+        
+        document.getElementById('inputJardas').value = (metros*1.094).toFixed(3)
+        document.getElementById('inputPés').value = (metros*3.281).toFixed(3)
+        document.getElementById('inputPolegadas').value = (metros*39.37).toFixed(3)
+        document.getElementById('inputMilhas').value = (metros*0.000621).toFixed(3)
+        
+        document.getElementById('inputMetros').value = ''
+
+        }
+    </script>
+</body>
+</html>
